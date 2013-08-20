@@ -4,32 +4,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Wanderlust" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Wanderlust" %>">
+    <%= include_gon %>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/1.1.5/angular-cookies.min.js"></script> 
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <%= render 'layouts/navigation' %>
-        </div>
-      </nav>
-    </div>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
+  <body ng-app="odyssey" class="<%= controller_name %> <%= action_name %>">
+    <div class="container">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-10">
+            <h1>Wanderlust</h1>
+          </div>
+          <div class="col-md-2">
+            <div style="padding-top:20px;">
+            <%= render 'layouts/navigation' %>
             </div>
           </div>
-          <footer>
-          </footer>
         </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+      </div>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

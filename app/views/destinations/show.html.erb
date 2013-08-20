@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Trip:</b>
+  <%= @destination.trip_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @destination.name %>
+</p>
+
+<p>
+  <b>Photo url:</b>
+  <%= @destination.photo_url %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @destination.address %>
+</p>
+
+<p>
+  <b>Cross street:</b>
+  <%= @destination.cross_street %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @destination.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @destination.state %>
+</p>
+
+<p>
+  <b>Postal code:</b>
+  <%= @destination.postal_code %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%= @destination.country %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @destination.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%= @destination.lng %>
+</p>
+
+<p>
+  <b>Distance:</b>
+  <%= @destination.distance %>
+</p>
+
+
+<%= link_to 'Edit', edit_destination_path(@destination) %> |
+<%= link_to 'Back', destinations_path %>

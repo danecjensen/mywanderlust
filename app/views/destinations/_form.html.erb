@@ -1,0 +1,22 @@
+<%= simple_form_for(@destination) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :trip_id %>
+    <%= f.input :name %>
+    <%= f.input :photo_url %>
+    <%= f.input :address %>
+    <%= f.input :cross_street %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :postal_code %>
+    <%= f.input :country %>
+    <%= f.input :lat %>
+    <%= f.input :lng %>
+    <%= f.input :distance %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
