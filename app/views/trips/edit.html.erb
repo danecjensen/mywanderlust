@@ -1,7 +1,12 @@
-<div ng-controller="SearchCtrl">
+<div ng-controller="SearchCtrl" ng-init="explore();">
   <p class="lead">Pick destinations you want to go to in {{current_city}}</p>
     <input type="text" class="form-control" style="margin-bottom:15px;" ng-model="placeQuery" placeholder="Add a destination" typeahead-on-select='onSelect($item, $model, $label)' typeahead="suggestion as suggestion.name for suggestion in getSuggestions()">
 
+    <div class="row">
+      <div ng-repeat="e in explories">
+        <p>{{e.venue.name}}</p>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-4" ng-repeat="p in destinations">

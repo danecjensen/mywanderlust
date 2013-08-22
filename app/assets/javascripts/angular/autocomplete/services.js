@@ -19,7 +19,7 @@ angular.module('odyssey.services', ['ngResource', 'rails'],
                 });
         });
     })
-    .factory('4sqResource', function($http, $resource){
+    .factory('foursqResource', function($http, $resource){
         delete $http.defaults.headers.common["X-Requested-With"];
         return $resource('https://api.foursquare.com/v2/venues/:aspect',
             {

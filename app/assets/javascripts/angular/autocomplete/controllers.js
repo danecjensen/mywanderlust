@@ -3,22 +3,24 @@
 /* Controllers */
 
 angular.module('odyssey.controllers', []).
-  controller('SearchCtrl', function($scope, $http, $cookieStore, $cookies, foursquareResource, Trip, Destination, currentCity) {
+  controller('SearchCtrl', function($scope, $http, $cookieStore, $cookies, foursquareResource, foursqResource, Trip, Destination, currentCity) {
   	delete $http.defaults.headers.common["X-Requested-With"];
   	$scope.destinations = gon.destinations;
+    $scope.explories = [];
     $scope.trip_id = gon.trip.id;
     $scope.current_city = gon.trip.name;
     $scope.current_lat = gon.trip.current_lat;
     $scope.current_lng = gon.trip.current_lng;
 
-    console.log($cookies.current_city);
 
     $scope.explore = function(){
-      var exploreRes = 4sqResource.get({'aspect': 'explore', 'll': $scope.current_lat + ',' + $scope.current_lng, 'venuePhotos': 1 }, 
+      console.log("called!");
+      var exploreRes = foursqResource.get({'aspect': 'explore', 'll': $scope.current_lat + ',' + $scope.current_lng, 'venuePhotos': 1 }, 
         function(){
-        var photo_url = photo.response.photos.items[0].prefix + "300x200" + photo.response.photos.items[0].suffix;
-        $scope.destinations[0].photo_url = photo_url;
-        new Destination($scope.destinations[0]).create();
+          $scope.explories = exploreRes.response.groups[0].items;
+          console.log(exploreRes);
+          console.log($scope.explories);
+          return $scope.explories
       });
     }
 
@@ -28,7 +30,7 @@ angular.module('odyssey.controllers', []).
         'url' : 'https://api.foursquare.com/v2/venues/suggestCompletion?',
         'client_id'     : 'AAUXORIZZ1CNKYBDNXUINODGQT24W2XO3IQAFIZ04Y0YBWVQ',
         'client_secret' : 'L0KWGXINDGXNCHLBPQKDBVY4QPARCWZLTSKJPBMV11ICADCX',
-        'll' : $cookies.current_lat + ',' + $cookies.current_lng, 
+        'll' : $scope.current_lat + ',' + $scope.current_lng, 
         //'ll' : '40.7,-74.0',
         'limit' : 10,
         'v' : '20130715',
