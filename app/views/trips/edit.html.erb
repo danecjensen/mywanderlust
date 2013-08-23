@@ -3,6 +3,15 @@
     <input type="text" class="form-control" style="margin-bottom:15px;" ng-model="placeQuery" placeholder="Add a destination" typeahead-on-select='onSelect($item, $model, $label)' typeahead="suggestion as suggestion.name for suggestion in getSuggestions()">
 
     <div class="row">
+      <carousel interval="myInterval">
+        <slide ng-repeat="e in explories" active="slide.active">
+          <img ng-src="{{slide.image}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <h4>Slide {{$index}}</h4>
+            <p>{{slide.text}}</p>
+          </div>
+        </slide>
+      </carousel>
       <div ng-repeat="e in explories">
         <p>{{e.venue.name}}</p>
       </div>
