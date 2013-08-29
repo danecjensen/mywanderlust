@@ -7,8 +7,8 @@
     <%= include_gon %>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-    <script type="text/javascript" src="http://code.angularjs.org/1.1.5/angular-cookies.min.js"></script> 
+    <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en" %>
+    <%= javascript_include_tag  "http://code.angularjs.org/1.1.5/angular-cookies.min.js" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
@@ -17,7 +17,7 @@
       <div class="page-header">
         <div class="row">
           <div class="col-md-10 col-xs-10">
-            <h1>Wanderlust</h1>
+            <a href="/"><h1>Wanderlust</h1></a>
           </div>
           <div class="col-md-2">
             <div style="padding-top:25px;">

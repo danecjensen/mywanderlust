@@ -4,24 +4,50 @@
 
 angular.module('odyssey.controllers', []).
   controller('SearchCtrl', function($scope, $http, $cookieStore, $cookies, foursquareResource, foursqResource, Trip, Destination, currentCity) {
-  	delete $http.defaults.headers.common["X-Requested-With"];
+  	
+    Array.prototype.chunk = function(chunkSize) {
+      var array=this;
+      return [].concat.apply([],
+          array.map(function(elem,i) {
+              return i%chunkSize ? [] : [array.slice(i,i+chunkSize)];
+          })
+      );
+    }
+
+    delete $http.defaults.headers.common["X-Requested-With"];
   	$scope.destinations = gon.destinations;
     $scope.explories = [];
     $scope.trip_id = gon.trip.id;
     $scope.current_city = gon.trip.name;
     $scope.current_lat = gon.trip.current_lat;
     $scope.current_lng = gon.trip.current_lng;
+    $scope.isCollapsed = true;
+    $scope.isLoading = false;
 
+    angular.extend($scope, {
+      center: {
+        latitude: gon.trip.current_lat, // initial map center latitude
+        longitude: gon.trip.current_lng, // initial map center longitude
+      }, // an array of markers,
+      zoom: 11, // the zoom level
+    });
 
     $scope.explore = function(){
-      console.log("called!");
       var exploreRes = foursqResource.get({'aspect': 'explore', 'll': $scope.current_lat + ',' + $scope.current_lng, 'venuePhotos': 1 }, 
         function(){
           $scope.explories = exploreRes.response.groups[0].items;
-          console.log(exploreRes);
-          console.log($scope.explories);
+          $scope.explories = $scope.explories.chunk(3);
           return $scope.explories
       });
+    }
+
+    $scope.addDestination = function(venue){
+      var photo_url = venue.photos.groups[0].items[0].prefix + '200x200' + venue.photos.groups[0].items[0].suffix;
+      var l = {'trip_id': $scope.trip_id, 'name': venue.name, 'photo_url': photo_url, 'latitude': venue.location.lat, 'longitude': venue.location.lng};
+      var d = angular.extend(l, venue.location);
+      new Destination(d).create();
+      $scope.destinations.unshift(d);
+      //$scope.markers.push({latitude: venue.location.lat, longitude: venue.location.lng});
     }
 
     $scope.getSuggestions = function(){
@@ -59,14 +85,21 @@ angular.module('odyssey.controllers', []).
     }
 
     $scope.onSelect = function($item, $model, $label){
-      var d = angular.extend({'trip_id': $scope.trip_id, 'name': $model.name, 'photo_url': ''}, $model.location);
+      var d = angular.extend({
+        'trip_id': $scope.trip_id, 
+        'name': $model.name, 
+        'photo_url': '',
+        'latitude': $model.location.lat,
+        'longitude': $model.location.lng,
+        }, $model.location);
+
       $scope.destinations.unshift(d);
       var photo = foursquareResource.get({'venueId': $model.id}, function(){
-      	var photo_url = photo.response.photos.items[0].prefix + "300x200" + photo.response.photos.items[0].suffix;
+      	var photo_url = photo.response.photos.items[0].prefix + "200x200" + photo.response.photos.items[0].suffix;
       	$scope.destinations[0].photo_url = photo_url;
         new Destination($scope.destinations[0]).create();
       });
-      
+      $scope.placeQuery = "";
       //$scope.markers.push({latitude: $model.data.location.lat, longitude: $model.data.location.lng});
     }
   })

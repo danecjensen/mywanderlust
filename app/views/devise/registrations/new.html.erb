@@ -1,11 +1,10 @@
-<h2>Sign up</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
-  <%= f.error_notification %>
-  <%= display_base_errors resource %>
-  <%= f.input :name, :autofocus => true %>
-  <%= f.input :email, :required => true %>
-  <%= f.input :password, :required => true %>
-  <%= f.input :password_confirmation, :required => true %>
-  <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
-<% end %>
-<%= render "devise/shared/links" %>
+<form accept-charset="UTF-8" action="/users" class="form-signin" id="new_user" method="post" novalidate="novalidate">
+	<input name="utf8" type="hidden" value="✓">
+	<input name="authenticity_token" type="hidden" value="3FoI5hddyyzqtrZr7Mg3RXkFWGq19gaYjkY8/OAr02c=">
+	<input autofocus="autofocus" class="form-control required" id="user_email" name="user[email]" size="50" type="email" value="" placeholder="Email address">
+	<input class="form-control required" id="user_password" name="user[password]" size="50" type="password" placeholder="Password">
+	<input class="form-control required" id="user_password_confirmation" name="user[password_confirmation]" size="50" type="password" style="margin-bottom:10px;" placeholder="Password confirmation">
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+	<br>
+	<%= render "devise/shared/links" %>
+</form>

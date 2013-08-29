@@ -14,17 +14,18 @@ angular.module('odyssey.directives', []).
         link: function(scope, element, attrs) {
                     var options = {
                         types: ['(cities)'],
-                        componentRestrictions: {country: 'us'}
+                        componentRestrictions: {}
                     };
                     scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
                     google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
     		                var place = scope.gPlace.getPlace();
+                            console.log(place);
     		                var current_city = {
     		                 	name: place.name,
     		                	formatted_address: place.formatted_address,
     		                	location: {
-    		                		lat: place.geometry.location.mb,
-    		                		lng: place.geometry.location.nb
+    		                		lat: place.geometry.location.ob,
+    		                		lng: place.geometry.location.pb
     		                	}
     		                }
     		                currentCity.setProperty(current_city);
@@ -43,13 +44,13 @@ angular.module('odyssey.directives', []).
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", "trip[current_lat]");
-                        hiddenField.setAttribute("value", place.geometry.location.mb);
+                        hiddenField.setAttribute("value", place.geometry.location.ob);
                         form.appendChild(hiddenField);
 
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", "trip[current_lng]");
-                        hiddenField.setAttribute("value", place.geometry.location.nb);
+                        hiddenField.setAttribute("value", place.geometry.location.pb);
                         form.appendChild(hiddenField);
 
                         var hiddenField = document.createElement("input");

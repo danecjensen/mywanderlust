@@ -1,8 +1,11 @@
-<h2>Sign in</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
-  <%= f.input :email, :autofocus => true %>
-  <%= f.input :password %>
-  <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-  <%= f.button :submit, "Sign in", :class => 'btn-primary' %>
-<% end %>
-<%= render "devise/shared/links" %>
+<form accept-charset="UTF-8" action="/users/sign_in" class="form-signin" id="new_user" method="post" novalidate="novalidate">
+	<input name="utf8" type="hidden" value="✓">
+	<input name="authenticity_token" type="hidden" value="3FoI5hddyyzqtrZr7Mg3RXkFWGq19gaYjkY8/OAr02c=">
+	<input autofocus="autofocus" class="form-control" id="user_email" name="user[email]" size="50" type="email" value="" placeholder="Email address">
+	<input class="form-control" id="user_password" name="user[password]" size="50" type="password" placeholder="Password" style="margin-bottom:10px;">
+	<input name="user[remember_me]" type="hidden" value="1">
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	<br>
+	<%= render "devise/shared/links" %>
+</form>
+

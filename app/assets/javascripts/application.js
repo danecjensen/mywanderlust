@@ -16,6 +16,7 @@
 //= require angular
 //= require angular-ui-bootstrap-tpls
 //= require angular-resource
+//= require angular-google-maps
 //= require angularjs/rails/resource
 //= require ./angular/autocomplete/app.js
 //= require_tree ./angular/autocomplete
