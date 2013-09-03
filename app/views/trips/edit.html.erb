@@ -1,5 +1,6 @@
 <div ng-controller="SearchCtrl" ng-init="explore();">
-  <p class="lead">Pick destinations you want to go to in {{current_city}}</p>
+    <p class="lead">Pick destinations you want to go to in {{current_city}}</p>
+      
     <input type="text" class="form-control" style="margin-bottom:15px;" autofocus ng-model="placeQuery" placeholder="Add a destination" typeahead-on-select='onSelect($item, $model, $label)' typeahead-min-length="0" typeahead-loading='isLoading' typeahead="suggestion as suggestion.name for suggestion in getSuggestions()">
     <button class="btn btn-default pull-right" ng-click="isCollapsed = !isCollapsed">View Top Suggestions</button>
 
@@ -36,6 +37,7 @@
         </div>
       </div>
       <div class="col-md-3">
+<!--         <button popover-placement="top" popover-html-unsafe='<input type="text"/>' popover-title="Send Trip To..." style="margin-bottom:10px;" class="btn btn-default"><span class="glyphicon glyphicon-envelope"> </span>  Ask Friends for Recommendation</button> -->
         <div class="well">
           <google-map center="center" draggable="true" zoom="zoom" markers="destinations" mark-click="true" style="height: 400px; display: block;"></google-map>
         </div>
