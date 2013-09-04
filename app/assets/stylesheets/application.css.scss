@@ -13,8 +13,20 @@
 */
 
 $carousel-control-color: #000;
+$body-bg: #e3e3e3;
+$navbar-default-bg: #fff;
+$thumbnail-bg: $navbar-default-bg;
+$well-bg: $navbar-default-bg;
+$thumbnail-border-radius: 0px;
 
 @import "bootstrap";
+
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
+
+.navbar-brand { margin-left: auto; margin-right: auto; }
 
 .content {
   background-color: #eee;

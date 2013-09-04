@@ -13,19 +13,27 @@
     <%= yield(:head) %>
   </head>
   <body ng-app="odyssey" class="<%= controller_name %> <%= action_name %>">
-    <div class="container">
-      <div class="page-header">
-        <div class="row">
-          <div class="col-md-10 col-xs-10">
-            <a href="/"><h1>Wanderlust</h1></a>
-          </div>
-          <div class="col-md-2">
-            <div style="padding-top:25px;">
-            <%= render 'layouts/navigation' %>
-            </div>
-          </div>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Wanderlust</a>
         </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          </ul>
+          <div class="nav navbar-nav navbar-right">
+            <%= render 'layouts/navigation' %>
+          </div>
+        </div><!--/.nav-collapse -->
       </div>
+    </div>
+    <div class="container">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
