@@ -1,6 +1,41 @@
-<h3>User</h3>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<% @trips.each do |t|%>
-	<h1><%= t.name%></h1>
+<% content_for :head do %>
+  <style type="text/css">
+	.boardThumbs img{
+		position: relative;
+		display: inline;
+		height: 51px;
+		width: 51px;
+		margin-left: 4px;
+		margin-bottom: 4px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-ms-border-radius: 3px;
+		-o-border-radius: 3px;
+		border-radius: 3px;
+	}
+  </style>
 <% end %>
+
+<div class="row">
+	<div class="col-md-3">
+		<img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&f=y&d=mm"/>
+	</div>
+	<div class="col-md-9">
+		<p>User: <%= @user.name %></p>
+		<p>Email: <%= @user.email if @user.email %></p>
+	</div>
+</div>
+<div class="row" style="margin-top:20px;">
+<% @trips.each do |t|%>
+        <div class="col-md-3">
+          <a href="<%= edit_trip_path(t)%>" class="thumbnail" style="margin-bottom: 20px;">
+          	<h3 class="text-center"><%= t.name%></h3>
+	        <div class="boardThumbs" style="margin-left: 12px; margin-bottom: 20px;">
+	          	<% t.destinations.each do |d|%>
+	          		<img src="<%= d.fsq_prefix_url + '50x50' + d.fsq_suffix_url%>" class="" />
+	          	<% end %>
+          	</div>
+          </a>
+        </div>
+<% end %>
+</div>
