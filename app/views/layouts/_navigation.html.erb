@@ -1,9 +1,9 @@
   <% if user_signed_in? %>
     	<%= link_to(current_user) do%>
-    		<button type="button" class="btn btn-default navbar-btn">Profile</button>
+    		<button type="button" class="btn btn-default navbar-btn"><%= image_tag(avatar_url_small(current_user)) %>   Profile</button>
     	<% end %>
   <% else %>
-  	<li>
-    	<%= link_to 'Login', new_user_session_path, :class =>'btn btn-default navbar-btn' %>
-	</li>
+	<%= link_to(new_user_session_path) do%>
+		<button type="button" class="btn btn-default navbar-btn">Login</button>
+	<% end %>
   <% end %>

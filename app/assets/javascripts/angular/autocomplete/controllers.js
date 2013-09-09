@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('odyssey.controllers', []).
-  controller('SearchCtrl', function($scope, $http, $cookieStore, $cookies, foursquareResource, foursqResource, Trip, Destination, currentCity) {
+  controller('SearchCtrl', function($scope, $http, $location, $cookieStore, $cookies, foursquareResource, foursqResource, Trip, Destination, currentCity, flash) {
   	
     Array.prototype.chunk = function(chunkSize) {
       var array=this;
@@ -17,6 +17,9 @@ angular.module('odyssey.controllers', []).
     delete $http.defaults.headers.common["X-Requested-With"];
   	$scope.destinations = gon.destinations;
     $scope.explories = [];
+    $scope.trip_owner = gon.trip_owner;
+    $scope.username = gon.current_username;
+    $scope.userphoto = gon.current_userphoto;
     $scope.trip_id = gon.trip.id;
     $scope.current_city = gon.trip.name;
     $scope.current_lat = gon.trip.current_lat;
@@ -36,7 +39,7 @@ angular.module('odyssey.controllers', []).
       var exploreRes = foursqResource.get({'aspect': 'explore', 'll': $scope.current_lat + ',' + $scope.current_lng, 'venuePhotos': 1 }, 
         function(){
           $scope.explories = exploreRes.response.groups[0].items;
-          $scope.explories = $scope.explories.chunk(3);
+          $scope.explories = $scope.explories.chunk(1);
           return $scope.explories
       });
     }
@@ -51,6 +54,8 @@ angular.module('odyssey.controllers', []).
         'longitude': venue.location.lng,
         'fsq_prefix_url': venue.photos.groups[0].items[0].prefix,
         'fsq_suffix_url': venue.photos.groups[0].items[0].suffix,
+        'added_by': $scope.username,
+        'added_by_photo_url': $scope.userphoto,
       };
       var d = angular.extend(l, venue.location);
       new Destination(d).create();
@@ -85,7 +90,11 @@ angular.module('odyssey.controllers', []).
       $http({method: 'GET', url: url}).
         success(function(data, status, headers, config) {
           $scope.suggestions = [];
-          $scope.suggestions = data.response.minivenues;
+          var a = data.response.minivenues;
+          for(var i = 0; i < a.length; i++){
+            a[i].nameaddress = a[i].name + " (" + a[i].location.address + " " + a[i].location.city + ", " + a[i].location.state + ")";
+          }
+          $scope.suggestions = a;
         }).
         error(function(data, status, headers, config) {});
 
@@ -93,6 +102,8 @@ angular.module('odyssey.controllers', []).
     }
 
     $scope.onSelect = function($item, $model, $label){
+      var l = $model.location;
+      var daddr = l.address+"+"+l.city+"+"+l.state;
       var d = angular.extend({
         'trip_id': $scope.trip_id, 
         'name': $model.name, 
@@ -101,6 +112,9 @@ angular.module('odyssey.controllers', []).
         'longitude': $model.location.lng,
         'fsq_prefix_url': '',
         'fsq_suffix_url': '',
+        'added_by': $scope.username,
+        'added_by_photo_url': $scope.userphoto,
+        'directions': daddr.split(' ').join('+'),
         }, $model.location);
 
       $scope.destinations.unshift(d);
@@ -114,8 +128,19 @@ angular.module('odyssey.controllers', []).
       $scope.placeQuery = "";
       //$scope.markers.push({latitude: $model.data.location.lat, longitude: $model.data.location.lng});
     }
+
+    $scope.submit = function(){
+      var data = {
+        'email': $scope.email,
+        'url': $location.absUrl()
+      }
+
+      $http.post("/trips/share", data);
+      $scope.email = "";
+      flash.success = "Email sent!"
+    }
   })
   .controller('HomeCtrl', function($scope, $http) {
   	  $scope.gPlace;
-	  $scope.current_city;
+	    $scope.current_city;
   });

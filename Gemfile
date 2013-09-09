@@ -17,6 +17,10 @@ gem 'pg'
 gem 'simple_form'
 gem 'thin'
 gem 'gon'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-foursquare'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]

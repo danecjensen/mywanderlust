@@ -13,16 +13,35 @@
 		-o-border-radius: 3px;
 		border-radius: 3px;
 	}
+
+	.boardThumbs .hoverMask{
+		bottom: 0;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 51px;
+		width: 51px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-ms-border-radius: 3px;
+		-o-border-radius: 3px;
+		border-radius: 3px;
+		background-color: #eee;
+	}
   </style>
 <% end %>
 
 <div class="row well">
 	<div class="col-md-3">
-		<img class="img-thumbnail" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&f=y&d=mm"/>
+		<%= image_tag(avatar_url_big(@user), :class => "img-thumbnail") %>
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-9 hidden-xs">
 		<p>User: <%= @user.name %></p>
-		<p>Email: <%= @user.email if @user.email %></p>
+		<% if current_user == @user %>
+			<p>Email: <%= @user.email if @user.email %></p>
+			<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+		<% end %>
 	</div>
 </div>
 <div class="row" style="margin-top:20px;">
@@ -31,7 +50,8 @@
           <a href="<%= edit_trip_path(t)%>" class="thumbnail" style="margin-bottom: 20px;">
           	<h3 class="text-center"><%= t.name%></h3>
 	        <div class="boardThumbs" style="margin-left: 12px; margin-bottom: 20px;">
-	          	<% t.destinations.each do |d|%>
+	          	<% t.destinations.limit(8).each do |d|%>
+	          		<!-- <span class="hoverMask"></span> -->
 	          		<img src="<%= d.fsq_prefix_url + '50x50' + d.fsq_suffix_url%>" class="" />
 	          	<% end %>
           	</div>

@@ -17,19 +17,17 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Wanderlust</a>
+          <a class="navbar-brand" href="/">Wanderlust (alpha release)</a>
+          <div class="visible-xs">
+            <%= render 'layouts/navigation' %>
+          </div>
+        </div>
+        <div class="nav navbar-nav navbar-right hidden-xs">
+          <%= render 'layouts/navigation' %>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
           </ul>
-          <div class="nav navbar-nav navbar-right">
-            <%= render 'layouts/navigation' %>
-          </div>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -37,5 +35,8 @@
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
+    <a href="http://google.com" target="_blank" class="hidden-xs">
+      <img class="img-responsive" style="position: fixed; bottom: 0; right: 0; border: 0;" src="<%=asset_path "feedback.png"%>" alt="Feedback">
+    </a>
   </body>
 </html>

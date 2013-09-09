@@ -35,7 +35,26 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+    def avatar_url(email, size)
+      gravatar_id = Digest::MD5::hexdigest(email).downcase
+      "http://gravatar.com/avatar/#{gravatar_id}?s=#{size}&d=mm"
+    end  
+
     @trip = Trip.find_by_webstring(params[:id])
+    if @trip.user
+      gon.trip_owner = @trip.user.name ||= "Enter your name"
+    else
+      gon.trip_owner = "Anonymous Person"
+    end
+
+    if current_user
+      gon.current_username = current_user.name
+      gon.current_userphoto = avatar_url(current_user.email, 45)
+    else
+      gon.current_username = "Anonymous"
+      gon.current_userphoto = avatar_url("user@example.com", 45)      
+    end
+
     gon.trip = @trip
     gon.destinations = @trip.destinations
   end
@@ -63,6 +82,14 @@ class TripsController < ApplicationController
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def share
+    @email = params[:email]
+    @url = params[:url]
+    TripMailer.share_trip_email(@email, @url).deliver 
+    # flash[:notice] = "Email sent." 
+    render :nothing => true
   end
 
   # PUT /trips/1

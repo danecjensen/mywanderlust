@@ -12,4 +12,19 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def avatar_url_small(user)
+    gravatar_id = Digest::MD5::hexdigest(user.email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}?s=20&d=mm"
+  end
+
+  def avatar_url_big(user)
+    gravatar_id = Digest::MD5::hexdigest(user.email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}?s=200&d=mm"
+  end
+
+  def avatar_url(email, size, force="n")
+    gravatar_id = Digest::MD5::hexdigest(email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}?s=200&d=mm&f=#{force}"
+  end    
+
 end

@@ -21,12 +21,15 @@ $thumbnail-border-radius: 0px;
 
 @import "bootstrap";
 
+/* fixed header styles */
 body {
-  min-height: 2000px;
+  min-height: 500px;
   padding-top: 70px;
 }
 
 .navbar-brand { margin-left: auto; margin-right: auto; }
+
+
 
 .content {
   background-color: #eee;

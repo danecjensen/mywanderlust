@@ -6,9 +6,11 @@ Wanderlust::Application.routes.draw do
 
 
   authenticated :user do
-    root :to => 'home#index'
+    root :to => 'trips#new'
   end
   root :to => "trips#new"
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
+  match 'home' => 'home#index'
+  match 'trips/share' => 'trips#share'
 end

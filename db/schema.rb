@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903231646) do
+ActiveRecord::Schema.define(:version => 20130906191949) do
 
   create_table "destinations", :force => true do |t|
     t.integer  "trip_id"
@@ -26,13 +26,16 @@ ActiveRecord::Schema.define(:version => 20130903231646) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "distance"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "cc"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "fsq_prefix_url"
     t.string   "fsq_suffix_url"
+    t.string   "added_by"
+    t.string   "added_by_photo_url"
+    t.string   "directions"
   end
 
   create_table "trips", :force => true do |t|
@@ -59,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20130903231646) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
