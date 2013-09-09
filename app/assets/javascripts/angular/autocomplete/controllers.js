@@ -57,7 +57,7 @@ angular.module('odyssey.controllers', []).
         'added_by': $scope.username,
         'added_by_photo_url': $scope.userphoto,
         'directions': daddr.split(' ').join('+'),
-        'url': $model.url,
+        'url': '',
       };
       var d = angular.extend(l, venue.location);
       new Destination(d).create();
@@ -116,16 +116,18 @@ angular.module('odyssey.controllers', []).
         'fsq_suffix_url': '',
         'added_by': $scope.username,
         'added_by_photo_url': $scope.userphoto,
+        'url': '',
         'directions': daddr.split(' ').join('+'),
-        'url': $model.url,
         }, $model.location);
-      
+
       $scope.destinations.unshift(d);
-      var photo = foursquareResource.get({'venueId': $model.id}, function(){
-      	var photo_url = photo.response.photos.items[0].prefix + "200x200" + photo.response.photos.items[0].suffix;
+
+      var venue = foursquareResource.get({'venueId': $model.id}, function(){
+      	var photo_url = venue.response.photos.items[0].prefix + "200x200" + venue.response.photos.items[0].suffix;
       	$scope.destinations[0].photo_url = photo_url;
-        $scope.destinations[0].fsq_prefix_url = photo.response.photos.items[0].prefix;
-        $scope.destinations[0].fsq_suffix_url = photo.response.photos.items[0].suffix;
+        $scope.destinations[0].fsq_prefix_url = venue.response.photos.items[0].prefix;
+        $scope.destinations[0].fsq_suffix_url = venue.response.photos.items[0].suffix;
+        $scope.destinations[0].url = venue.url;
         new Destination($scope.destinations[0]).create();
       });
       $scope.placeQuery = "";

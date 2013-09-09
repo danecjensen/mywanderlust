@@ -12,7 +12,7 @@ angular.module('odyssey.services', ['ngResource', 'rails'],
             return $resource('https://api.foursquare.com/v2/venues/:venueId/:aspect',
                 {
                     'venueId': '4fc77712e4b081ac0cd040e6',
-                    'aspect': 'photos',
+                    'aspect': '',
                     'client_id' : 'AAUXORIZZ1CNKYBDNXUINODGQT24W2XO3IQAFIZ04Y0YBWVQ',
                     'client_secret' : 'L0KWGXINDGXNCHLBPQKDBVY4QPARCWZLTSKJPBMV11ICADCX',
                     'v' : '20130715'
