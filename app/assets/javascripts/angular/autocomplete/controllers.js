@@ -123,13 +123,15 @@ angular.module('odyssey.controllers', []).
       $scope.destinations.unshift(d);
 
       var venue = foursquareResource.get({'venueId': $model.id}, function(){
-      	var photo_url = venue.response.photos.items[0].prefix + "200x200" + venue.response.photos.items[0].suffix;
+      	var photo_url = venue.response.venue.photos.groups[0].items[0].prefix + "200x200" + venue.response.venue.photos.groups[0].items[0].suffix;
       	$scope.destinations[0].photo_url = photo_url;
-        $scope.destinations[0].fsq_prefix_url = venue.response.photos.items[0].prefix;
-        $scope.destinations[0].fsq_suffix_url = venue.response.photos.items[0].suffix;
-        $scope.destinations[0].url = venue.url;
+        $scope.destinations[0].fsq_prefix_url = venue.response.venue.photos.groups[0].items[0].prefix;
+        $scope.destinations[0].fsq_suffix_url = venue.response.venue.photos.groups[0].items[0].suffix;
+        $scope.destinations[0].url = venue.response.venue.url;
         new Destination($scope.destinations[0]).create();
       });
+       console.log(venue);
+        console.log("hello!!!");        
       $scope.placeQuery = "";
       //$scope.markers.push({latitude: $model.data.location.lat, longitude: $model.data.location.lng});
     }
