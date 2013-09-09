@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906191949) do
+ActiveRecord::Schema.define(:version => 20130909202924) do
 
   create_table "destinations", :force => true do |t|
     t.integer  "trip_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130906191949) do
     t.string   "added_by"
     t.string   "added_by_photo_url"
     t.string   "directions"
+    t.string   "url"
   end
 
   create_table "trips", :force => true do |t|

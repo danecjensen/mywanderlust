@@ -56,6 +56,8 @@ angular.module('odyssey.controllers', []).
         'fsq_suffix_url': venue.photos.groups[0].items[0].suffix,
         'added_by': $scope.username,
         'added_by_photo_url': $scope.userphoto,
+        'directions': daddr.split(' ').join('+'),
+        'url': $model.url,
       };
       var d = angular.extend(l, venue.location);
       new Destination(d).create();
@@ -115,8 +117,9 @@ angular.module('odyssey.controllers', []).
         'added_by': $scope.username,
         'added_by_photo_url': $scope.userphoto,
         'directions': daddr.split(' ').join('+'),
+        'url': $model.url,
         }, $model.location);
-
+      
       $scope.destinations.unshift(d);
       var photo = foursquareResource.get({'venueId': $model.id}, function(){
       	var photo_url = photo.response.photos.items[0].prefix + "200x200" + photo.response.photos.items[0].suffix;
