@@ -39,13 +39,13 @@
                       <p class="text-right">{{ p.added_by }}</p>
                     </div>
                   </a>
-                  <div ng-hide="p.comment != ''">
+<!--                   <div ng-hide="p.comment != ''">
                     <form ng-submit="addComment(p);">
-<!--                       <input ng-model="comment" type="text" class="form-control"/> -->
+                      <input ng-model="comment" type="text" class="form-control"/>
                       <button type="submit" id="submit" style="margin-top: 10px; margin-bottom:10px;" class="btn btn-default btn-block"><span class="glyphicon glyphicon-comment"> </span>  Add Comment</button>
                     </form>
                   </div>
-<!--                   <div ng-hide="p.comment == ''">
+                  <div ng-hide="p.comment == ''">
                     <img src="{{p.comment_avatar_url}}"/>
                     <p>{{ p.comment }}</p>
                   </div> -->
