@@ -117,6 +117,8 @@ angular.module('odyssey.controllers', []).
         'added_by': $scope.username,
         'added_by_photo_url': $scope.userphoto,
         'url': '',
+        'comment':'',
+        'comment_avatar_url':'',
         'directions': daddr.split(' ').join('+'),
         }, $model.location);
 
@@ -129,9 +131,7 @@ angular.module('odyssey.controllers', []).
         $scope.destinations[0].fsq_suffix_url = venue.response.venue.photos.groups[0].items[0].suffix;
         $scope.destinations[0].url = venue.response.venue.url;
         new Destination($scope.destinations[0]).create();
-      });
-       console.log(venue);
-        console.log("hello!!!");        
+      });      
       $scope.placeQuery = "";
       //$scope.markers.push({latitude: $model.data.location.lat, longitude: $model.data.location.lng});
     }
@@ -146,6 +146,16 @@ angular.module('odyssey.controllers', []).
       $scope.email = "";
       flash.success = "Email sent!"
     }
+
+    // $scope.addComment = function(dest){
+    //   dest.comment = $scope.comment;
+    //   dest.comment_avatar_url = $scope.userphoto;
+    //   $scope.comment = "";
+    //   alert(dest.id);
+
+    // }
+
+
   })
   .controller('HomeCtrl', function($scope, $http) {
   	  $scope.gPlace;

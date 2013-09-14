@@ -1,3 +1,17 @@
+<% content_for :head do %>
+  <style type="text/css">
+    .caption .media p {
+      margin: 0 0 0px;
+      font-size: 12px;
+    }
+
+    .media {
+      margin-bottom: 5px;
+    }
+  </style>
+<% end %>
+
+
 <div ng-controller="SearchCtrl" ng-init="explore();">
     <p class="lead">{{trip_owner}}'s trip to {{current_city}}</p>
       
@@ -25,6 +39,17 @@
                       <p class="text-right">{{ p.added_by }}</p>
                     </div>
                   </a>
+                  <div ng-hide="p.comment != ''">
+                    <form ng-submit="addComment(p);">
+                      <input ng-model="comment" type="text" class="form-control"/>
+                      <button type="submit" id="submit" style="margin-top: 10px; margin-bottom:10px;" class="btn btn-default btn-block"><span class="glyphicon glyphicon-comment"> </span>  Add Comment</button>
+                    </form>
+                  </div>
+                  <div ng-hide="p.comment == ''">
+                    <img src="{{p.comment_avatar_url}}"/>
+                    <p>{{ p.comment }}</p>
+                  </div>
+
                 </div>
               </div>
         </div>
@@ -58,7 +83,7 @@
               <h4 class="modal-title">Pick a destination you want to go to in {{current_city}}</h4>
             </div>
             <div class="modal-body" style="padding-top:0px;">
-                  <h3>Autocomplete</h3>
+                  <h3>Search</h3>
                   <input type="text" class="form-control" style="margin-bottom:15px;" autofocus ng-model="placeQuery" placeholder="Add any destination in {{current_city}}" typeahead-on-select='onSelect($item, $model, $label)' typeahead-min-length="0" typeahead-loading='isLoading' typeahead="suggestion as suggestion.nameaddress for suggestion in getSuggestions()">
                   <!-- <button class="btn btn-default pull-right" ng-click="isCollapsed = !isCollapsed">View Top Suggestions</button> <div collapse="isCollapsed"> -->
 <!--                   <h3>Suggestions</h3>

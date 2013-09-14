@@ -4,4 +4,5 @@ class Destination < ActiveRecord::Base
   :trip_id, :fsq_prefix_url, :fsq_suffix_url, :added_by, :added_by_photo_url,
   :directions, :url
   belongs_to :trip
+  acts_as_commentable
 end

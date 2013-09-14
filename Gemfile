@@ -20,6 +20,7 @@ gem 'gon'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-foursquare'
+gem 'acts_as_commentable_with_threading'
 
 group :development do
   gem 'better_errors'

@@ -49,10 +49,10 @@ class TripsController < ApplicationController
 
     if current_user
       gon.current_username = current_user.name
-      gon.current_userphoto = avatar_url(current_user.email, 45)
+      gon.current_userphoto = avatar_url(current_user.email, 30)
     else
       gon.current_username = "Anonymous"
-      gon.current_userphoto = avatar_url("user@example.com", 45)      
+      gon.current_userphoto = avatar_url("user@example.com", 30)      
     end
 
     gon.trip = @trip
