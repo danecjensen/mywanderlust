@@ -9,6 +9,7 @@ Here's my profile with multiple trips I want to go on:
 
 Please try to plan a trip with it and share the trip with people and tell me what would make the app more useful.  
 
+All feedback is appreciated.
 
 h2. Ruby on Rails
 
@@ -18,6 +19,16 @@ This application requires:
 * Rails version 3.2.13
 
 Learn more about "Installing Rails":http://railsapps.github.io/installing-rails.html.
+
+h2. AngularJS
+
+This application uses "AngularJS":http://angularjs.org
+
+h2. Other Open Source
+
+https://github.com/FineLinePrototyping/angularjs-rails-resource
+https://github.com/angular-ui/bootstrap
+https://github.com/twbs/bootstrap
 
 h2. Database
 
