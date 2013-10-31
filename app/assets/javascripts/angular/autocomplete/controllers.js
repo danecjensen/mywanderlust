@@ -75,6 +75,7 @@ angular.module('odyssey.controllers', []).
         //'ll' : '40.7,-74.0',
         'limit' : 10,
         'v' : '20130715',
+        'radius': 50000
       }
 
 
@@ -85,7 +86,8 @@ angular.module('odyssey.controllers', []).
         + "&v=" + opts.v 
         + "&limit=" + opts.limit
         + "&client_id=" + opts.client_id
-        + "&client_secret=" + opts.client_secret;
+        + "&client_secret=" + opts.client_secret
+        + "&radius=" + opts.radius;
 
       
 
@@ -117,8 +119,8 @@ angular.module('odyssey.controllers', []).
         'added_by': $scope.username,
         'added_by_photo_url': $scope.userphoto,
         'url': '',
-        'comment':'',
-        'comment_avatar_url':'',
+        //'comment':'',
+        //'comment_avatar_url':'',
         'directions': daddr.split(' ').join('+'),
         }, $model.location);
 

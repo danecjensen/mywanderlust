@@ -10,7 +10,7 @@ group :assets do
   gem 'angularjs-rails-resource', '~> 0.2.0'
 end
 gem 'jquery-rails'
-gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 gem 'devise'
 gem 'figaro'
 gem 'pg'

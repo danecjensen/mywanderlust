@@ -24,8 +24,8 @@ angular.module('odyssey.directives', []).
     		                 	name: place.name,
     		                	formatted_address: place.formatted_address,
     		                	location: {
-    		                		lat: place.geometry.location.pb,
-    		                		lng: place.geometry.location.qb
+    		                		lat: place.geometry.location.lb,
+    		                		lng: place.geometry.location.mb
     		                	}
     		                }
     		                currentCity.setProperty(current_city);
@@ -44,13 +44,13 @@ angular.module('odyssey.directives', []).
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", "trip[current_lat]");
-                        hiddenField.setAttribute("value", place.geometry.location.pb);
+                        hiddenField.setAttribute("value", place.geometry.location.lb);
                         form.appendChild(hiddenField);
 
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", "trip[current_lng]");
-                        hiddenField.setAttribute("value", place.geometry.location.qb);
+                        hiddenField.setAttribute("value", place.geometry.location.mb);
                         form.appendChild(hiddenField);
 
                         var hiddenField = document.createElement("input");

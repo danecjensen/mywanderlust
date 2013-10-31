@@ -13,7 +13,7 @@
 
 
 <div ng-controller="SearchCtrl" ng-init="explore();">
-    <p class="lead">{{trip_owner}}'s trip to {{current_city}}</p>
+    <p class="lead">{{trip_owner}}'s guide to {{current_city}}</p>
       
 
     <div class="row">
@@ -39,17 +39,20 @@
                       <p class="text-right">{{ p.added_by }}</p>
                     </div>
                   </a>
-<!--                   <div ng-hide="p.comment != ''">
-                    <form ng-submit="addComment(p);">
-                      <input ng-model="comment" type="text" class="form-control"/>
-                      <button type="submit" id="submit" style="margin-top: 10px; margin-bottom:10px;" class="btn btn-default btn-block"><span class="glyphicon glyphicon-comment"> </span>  Add Comment</button>
+                  <div>
+                    <form>
+                      <div class="media" ng-hide="p.comment != ''">
+                        <%= image_tag(avatar_url(current_user, 30), :class => "pull-left") %>
+                        <p>{{ current_user.name || "Your comment here"}}</p>
+                      </div>
+                      <div class="media" ng-hide="p.comment == ''">
+                        <img src="{{p.comment_avatar_url}}" class="pull-left"/>
+                        <p>{{ p.comment }}</p>
+                      </div>
+
+                      <button type="submit" id="submit"  popover-placement="bottom" popover="feature disabled" style="margin-top: 10px; margin-bottom:10px;" class="btn btn-default btn-block"><span class="glyphicon glyphicon-comment"> </span>  Add Comment</button>
                     </form>
                   </div>
-                  <div ng-hide="p.comment == ''">
-                    <img src="{{p.comment_avatar_url}}"/>
-                    <p>{{ p.comment }}</p>
-                  </div> -->
-
                 </div>
               </div>
         </div>
@@ -59,7 +62,7 @@
           <div flash-alert="success" active-class="in" class="fade">
               <span class="alert-message">{{flash.message}}</span>
           </div>
-          <h4>Share this trip</h4>
+          <h4>Ask friends for recommendations</h4>
           <form ng-submit="submit()">
             <input type="text" class="form-control ng-pristine ng-valid" ng-model="email" name="email" placeholder="Email Address" />
             <button type="submit" id="submit" style="margin-top: 10px; margin-bottom:10px;" class="btn btn-default"><span class="glyphicon glyphicon-envelope"> </span>  Send Email</button>

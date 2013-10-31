@@ -22,9 +22,13 @@ module ApplicationHelper
     "http://gravatar.com/avatar/#{gravatar_id}?s=200&d=mm"
   end
 
-  def avatar_url(email, size, force="n")
-    gravatar_id = Digest::MD5::hexdigest(email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}?s=200&d=mm&f=#{force}"
+  def avatar_url(user, size, force="n")
+    if user
+      gravatar_id = Digest::MD5::hexdigest(user.email).downcase
+    else
+      gravatar_id = Digest::MD5::hexdigest("user@example.com").downcase
+    end
+    "http://gravatar.com/avatar/#{gravatar_id}?s=#{size}&d=mm&f=#{force}"
   end    
 
 end
