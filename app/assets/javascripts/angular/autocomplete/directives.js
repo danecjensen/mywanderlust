@@ -20,12 +20,13 @@ angular.module('odyssey.directives', []).
                     google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
     		                var place = scope.gPlace.getPlace();
                             console.log(place);
+                            console.log(place.geometry.location.lat());
     		                var current_city = {
     		                 	name: place.name,
     		                	formatted_address: place.formatted_address,
     		                	location: {
-    		                		lat: place.geometry.location.lb,
-    		                		lng: place.geometry.location.mb
+    		                		lat: place.geometry.location.lat(),
+    		                		lng: place.geometry.location.lng()
     		                	}
     		                }
     		                currentCity.setProperty(current_city);
@@ -44,13 +45,13 @@ angular.module('odyssey.directives', []).
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", "trip[current_lat]");
-                        hiddenField.setAttribute("value", place.geometry.location.lb);
+                        hiddenField.setAttribute("value", place.geometry.location.lat());
                         form.appendChild(hiddenField);
 
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", "trip[current_lng]");
-                        hiddenField.setAttribute("value", place.geometry.location.mb);
+                        hiddenField.setAttribute("value", place.geometry.location.lng());
                         form.appendChild(hiddenField);
 
                         var hiddenField = document.createElement("input");
