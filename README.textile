@@ -1,22 +1,15 @@
 h1. Wanderlust
 
-This application was generated with the "rails_apps_composer":https://github.com/RailsApps/rails_apps_composer gem provided by the "RailsApps Project":http://railsapps.github.io/.
+I built the app as a way to help organize travel plans among multiple people.  It's pretty basic right now its just a board of destinations shared between people. You can check it out at "mywanderlust.co":http://mywanderlust.co.
+Here's an example trip I made:
+"http://mywanderlust.co/trips/c8b8d9b3444c2dce21fcf12063101b77a93c30f6/edit":http://mywanderlust.co/trips/c8b8d9b3444c2dce21fcf12063101b77a93c30f6/edit
 
-h2. Diagnostics
+Here's my profile with multiple trips I want to go on:
+"http://mywanderlust.co/users/2":http://mywanderlust.co/users/2
 
-This application was built with recipes that are NOT known to work together.
+Please try to plan a trip with it and share the trip with people and tell me what would make the app more useful.  
 
-This application was built with preferences that are NOT known to work together.
-
-If the application doesn't work as expected, please "report an issue":https://github.com/RailsApps/rails_apps_composer/issues and include these diagnostics:
-
-We'd also like to know if you've found combinations of recipes or preferences that do work together.
-
-Recipes:
-["apps4", "controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "saas", "setup", "testing", "views"]
-
-Preferences:
-{:git=>true, :railsapps=>"none", :dev_webserver=>"thin", :prod_webserver=>"thin", :database=>"postgresql", :templates=>"erb", :unit_test=>"rspec", :integration=>"rspec-capybara", :continuous_testing=>"guard", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"mandrill", :authentication=>"devise", :devise_modules=>"default", :authorization=>"none", :form_builder=>"simple_form", :starter_app=>"users_app", :rvmrc=>false, :quiet_assets=>true, :local_env_file=>true, :better_errors=>true}
+All feedback is appreciated.
 
 h2. Ruby on Rails
 
@@ -26,6 +19,16 @@ This application requires:
 * Rails version 3.2.13
 
 Learn more about "Installing Rails":http://railsapps.github.io/installing-rails.html.
+
+h2. AngularJS
+
+This application uses "AngularJS":http://angularjs.org
+
+h2. Other Open Source
+
+https://github.com/FineLinePrototyping/angularjs-rails-resource
+https://github.com/angular-ui/bootstrap
+https://github.com/twbs/bootstrap
 
 h2. Database
 
@@ -46,11 +49,11 @@ The application is configured to send email using a Mandrill account.
 
 h2. Getting Started
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Go to "mywanderlust.co":http://mywanderlust.co and try it out.
 
 h2. Documentation and Support
 
-This is the only documentation.
+This is the only documentation. Sorry.
 
 h4. Issues
 
@@ -71,10 +74,4 @@ If you make improvements to this application, please share with others.
 
 If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
 
-h2. Credits
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-h2. License
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
