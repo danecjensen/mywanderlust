@@ -74,6 +74,9 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     email_spec (1.5.0)
       launchy (~> 2.1)
       mail (~> 2.2)
@@ -274,6 +277,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   database_cleaner
   devise
+  dotenv-rails
   email_spec
   factory_girl_rails
   figaro
