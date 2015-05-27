@@ -162,4 +162,23 @@ angular.module('odyssey.controllers', []).
   .controller('HomeCtrl', function($scope, $http) {
   	  $scope.gPlace;
 	    $scope.current_city;
-  });
+  })
+  .controller('DestinationDetailsModalCtrl', ['$scope', '$modal', function ($scope, $modal) {
+    $scope.open = function(destination){
+      var modalInstance = $modal.open({
+        templateUrl: 'destination_details.html',
+        controller: 'DestinationDetailsModalInstanceCtrl',
+        resolve: {
+          destination: function () {
+            return destination;
+          }
+        }
+      });
+    }
+  }])
+  .controller('DestinationDetailsModalInstanceCtrl', ['$scope', '$modalInstance', 'destination', function ($scope, $modalInstance, destination) {
+    $scope.destination = destination;
+    $scope.close = function () {
+      $modalInstance.close();
+    };
+  }]);

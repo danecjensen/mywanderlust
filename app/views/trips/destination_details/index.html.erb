@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ destination.name }}</h3>
+</div>
+<div class="modal-body">
+  <img ng-src="{{ destination.photo_url }}" class="img-responsive">
+  <p><a href="{{ destination.url }}" target="_blank">Website</a></p>
+  <p><a href="http://maps.apple.com/?daddr={{ destination.directions }}&saddr=Current+Location" target="_blank">Directions here</a></p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

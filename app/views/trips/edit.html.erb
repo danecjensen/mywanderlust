@@ -26,10 +26,10 @@
             </div>
           </a>
         </div>
-        <div class="col-md-4" ng-repeat="p in destinations">
+        <div class="col-md-4" ng-repeat="p in destinations" ng-controller="DestinationDetailsModalCtrl">
               <div class="thumbnail well">
-                <img src="{{ p.photo_url }}" class="img-responsive">
-                <a href="{{ p.url }}"><h3>{{ p.name }}</h3></a>
+                <img src="{{ p.photo_url }}" class="img-responsive" ng-click="open(p);">
+                <a href ng-click="open(p);"><h3>{{ p.name }}</h3></a>
                 <p><a href="http://maps.apple.com/?daddr={{ p.directions }}&saddr=Current+Location" target="_blank">Directions here</a></p>
                 <div class="caption" style="border-top: 2px solid #e5e5e5;">
                   <a href="#" >

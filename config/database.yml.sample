@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: mywanderlust_development
+
+test:
+  <<: *default
+  database: mywanderlust_test
+
+production:
+  <<: *default
+  database: mywanderlust_production
+  username: mywanderlust
+  password: <%= ENV['MYWANDERLUST_DATABASE_PASSWORD'] %>
