@@ -11,7 +11,7 @@ group :assets do
   gem 'angularjs-rails-resource', '~> 0.2.0'
 end
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem 'bootstrap-sass', '~> 3.3.4'
 gem 'devise'
 gem 'figaro'
 gem 'pg'

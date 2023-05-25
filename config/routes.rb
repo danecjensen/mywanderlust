@@ -1,5 +1,7 @@
 Wanderlust::Application.routes.draw do
-  resources :trips
+  resources :trips do
+    resources :destination_details, only: [:index], controller: 'trips/destination_details'
+  end
 
 
   resources :destinations
